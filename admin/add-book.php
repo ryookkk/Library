@@ -84,39 +84,34 @@ Book Info
 
 <div class="form-group">
 <label> Category<span style="color:red;">*</span></label>
-<select>
-  <option value="ICT">ICT</option>
-  <option value="Filipino">Filipino</option>
-  <option value="English">English</option>
-  <option value="Mathematics">Mathematics</option>
-  <option value="Science">Science</option>
-  <option value="AP">AP</option>
-  <option value="Values Education">Values Education</option>
-  <option value="Religion">Religion</option>
-  <option value="Literature">Literature</option>
-  <option value="Thesis">Thesis</option>
-  <option value="Reference Books">Reference Books</option>
-</select>
-
-
-
-
-
+<select class="form-control" name="category" required="required">
+<option value=""> --Select Subject</option>
+<option value="ICT"> ICT</option>
+<option value="Filipino">Filipino</option>
+<option value="English">English</option>
+<option value="Mathematics">Mathematics</option>
+<option value="Science">Science</option>
+<option value="Aralin Panlipunan">Aralin Panlipunan</option>
+<option value="Values Education">Values Education</option>
+<option value="Religion">Religion</option>
+<option value="Literature">Literature</option>
+<option value="Research Theses">Research Theses</option>
+<option value="Reference Books">Reference Books</option>
 </div>
-
+</select>
 
 <div class="form-group">
 <label> Publisher<span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="author" autocomplete="off"  required />
 
 
-</select>
+
 </div>
 
 <div class="form-group">
 <label>Book Code<span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="isbn" maxlength="13"  required="required" autocomplete="off"  />
-<p class="help-block">An ISBN is an International Standard Book Number.ISBN Must be unique</p>
+<p class="help-block" style="color:red;">Scan the <strong>"BARCODE"</strong> for the Book Code!</p>
 </div>
 
  <div class="form-group">

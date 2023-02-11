@@ -20,8 +20,15 @@ if (isset($_POST['signup'])) {
     //print_r($_POST);
     //exit;
     $query = $dbh->prepare($sql);
+
     $query->execute();
-    
+    $lastInsertId = $dbh->lastInsertId();
+
+    if ($lastInsertId) {
+        echo '<script>alert("Your Registration is successful  "+"'.$fullname.'")</script>';
+    } else {   
+        echo "<script>alert('Something went wrong. Please try again');</script>";
+    }
 }
 
 ?>
@@ -95,7 +102,14 @@ error:function (){}
     position: relative;
     right: -250px;
 }
-
+.modal-content{
+    height: 500px;
+    width: 680px;
+}
+.modal-footer{
+    position: relative;
+    top: -280px;
+}
 
 .picture{
     width: 644px;
@@ -103,7 +117,17 @@ error:function (){}
 }
 
 
-
+@media print{
+    #print{
+        display: none;
+    
+    }
+}
+@media print{
+    #prin{
+        display:none;
+    }
+}
 .name{
     font-size: 15px;
     position: relative;
@@ -117,7 +141,11 @@ error:function (){}
     right: -50px;
 }
 
-
+.prin{
+    position: relative;
+    top: -770px;
+    right: -1170px;
+}
 @page{
     size: auto;
     margin: 0;
@@ -127,10 +155,6 @@ error:function (){}
     top: -70px;
     right: -50px;
 }
-.modal-dialog > .modal-content{
-    width: 680px;
-}
-
     </style>
 <body>
     <!------MENU SECTION START-->
@@ -144,11 +168,10 @@ error:function (){}
             </div>
         </div>
     <div class="row">
-            
         <div class="col-md-9 col-md-offset-1">
-        <div class="panel panel-danger">
+            <div class="panel panel-danger">
                 <div class="panel-heading">
-                    SIGNUP FORM
+                    REGISTER FORM
                 </div>
                 <div class="panel-body">
                     <form method="post" action="signup.php">
@@ -166,129 +189,94 @@ error:function (){}
                         </div>
                                                 
                         <div class="form-group">
-                            <label>Enter LRN</label>
-                            <input class="form-control" type="text" name="lrns" maxlength="13"  autocomplete="off" required  />
+                            <label>Enter LRN Number</label>
+                            <input class="form-control" type="text" name="lrns"  autocomplete="off"  />
                         </div>
 
-                        <button type="submit" name="signup" class="btn btn-danger" id="submit" onclick="showConfirmationModal()">Register Now </button>
-                    </form>  
-                      <div class="modal" tabindex="-1" role="dialog" id="confirmationModal">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Borrower Card</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal-body">
-                                    <div class="panel-headings print-container">
-                                        <img src="assets/img/schoolid.jpg" class="picture"/>
-                                        <div class="name">
-                                            <div class="lr">
-                                                Name: 
-                                                <?php if (isset($_POST['fullname'])): ?>
-                                                <?php echo $_POST['fullname'] ?>
-                                                <?php endif; ?>
-                                                <br>
-                                                LRN: 
-                                                <?php if (isset($_POST['lrns'])): ?>
-                                                <?php echo $_POST['lrns'] ?>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div id="qrcodeContainer" class="qrcode" style="width:100%; height:100%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!-- /.modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" onclick="signup()">Print</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                         
+                        <button type="submit" name="signup" class="btn btn-danger" id="submit">Register Now </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"   >
+                        Launch demo modal
+                        </button>
+                    </form>                            
                 </div>                        
+            </div>
+            <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Student Borrow Card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="panel-headings print-container">
+                     <img  src="assets/img/schoolid.jpg" class="picture"/>
+                    
+                        <div class="name">
+                            <div class="lr">
+                              Name: 
+                                <?php if (isset($_POST['fullname'])): ?>
+                                 <?php echo $_POST['fullname'] ?>
+                                  <?php endif; ?>
+                                 <br>
+                                 ID Number:
+                                 <?php if (isset($_POST['lrns'])): ?>
+                                 <?php echo $_POST['lrns'] ?>
+                                 <?php endif; ?>
+                                 </div>
+                                 <div id="qrcode" class="qrcode" style="width:100%; height:100%;"></div>
+                                 <input type="hidden" id="name_display" value="<?php if (isset($_POST['fullname'])): ?>
+                            <?php echo $_POST['fullname'] ?>
+                             <?php endif; ?>
+                        " />
+                        </div>
+                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Print</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+<!-- End Modal -->
+            <div class="panel-body">
+                <button class="prin" onclick="window.print();">Print </button> 
             </div>
         </div> 
     </div>
 </div>
 </div>
 
-<script>
-  function showConfirmationModal() {
-    // Check if all form fields are filled
-    var form = document.getElementById("signup");
-    var inputs = form.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
-      if (inputs[i].value === "") {
-        alert("Please fill out all form fields before submitting.");
-        return;
-      }
-    }
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 220,
+            height : 220
+        });
 
-    $("#confirmationModal").modal("show");
+        function makeCode () {		
+            var elText = document.getElementById("name_display");
+            qrcode.makeCode(elText.value.trim());
+            if(qrcode!=null && !qrcode.isEmpty()){
+           qrcode = qrcode.trim();
+}
+        }
 
-    // Generate QR code after the modal is shown
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      width : 220,
-      height : 220
-    });
+        makeCode();
 
-    function makeCode () {     
-      var elText = document.getElementById("name_display");
-      qrcode.makeCode(elText.value.trim());
-      if(qrcode!=null && !qrcode.isEmpty()){
-      qrcode = qrcode.trim();
-    }
-    }
-    makeCode();
-
-    $("#name_display").
-      on("blur", function () {
-          makeCode();
-      }).
-      on("keydown", function (e) {
-          if (e.keyCode == 13) {
-              makeCode();
-          }
-      });
-  }
-
-  function signup() {
-    // Collect form data
-    var formData = new FormData(document.getElementById("signup"));
-
-    // Send form data to server for processing
-    fetch("signup.php", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => response.text())
-    .then(result => {
-      // Handle server response
-      if (result === "success") {
-        // Show success message
-        alert("Form submitted successfully!");
-        // Clear form fields
-        document.getElementById("signup").reset();
-        // Close modal
-        $("#confirmationModal").modal("hide");
-      } else {
-        // Show error message
-        alert("There was an error submitting the form. Please try again later.");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
-  }
-</script>
-
-
-
-
+        $("#name_display").
+            on("blur", function () {
+                makeCode();
+            }).
+            on("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    makeCode();
+                }
+            });
+    </script>
      <!-- CONTENT-WRAPPER SECTION END-->
     <?php include('includes/footer.php');?>
     <script src="asset/js/jquery-1.10.2.js"></script>

@@ -1,8 +1,8 @@
 <style>
 img {
-  width: 2080px;
-  height: 180px;
-  object-fit: cover;
+    margin-top: -20px;
+    width: 1340px;
+    margin-left: 385px;
 }
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -500px;
@@ -36,9 +36,7 @@ img {
 <?php if($_SESSION['login'])
 {
 ?> 
-            <div class="right-div">
-                <a href="logout.php" class="btn btn-danger pull-right">LOG ME OUT</a>
-            </div>
+            <
             <?php }?>
         </div>
     </div>
