@@ -1,7 +1,7 @@
 <style>
 .log {
     margin-top: -20px;
-    width: 1340px;
+    width: 1400px;
     margin-left: 385px;
 }
 
@@ -61,9 +61,7 @@
             <div class="col-md-12">
                 <div class="navbar-collapse collapse ">
                     <ul id="menu-top" class="nav navbar-nav navbar-right">
-                        <li><a href="dashboard.php" class="menu-top-active">DASHBOARD</a></li>
-
-
+                        <li><a href="dashboard.php">DASHBOARD</a></li>
 
                         <li>
                             <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Books <i
@@ -88,6 +86,7 @@
                                         href="manage-issued-books.php">Manage Borrowed Books</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Register <i
                                     class="fa fa-angle-down"></i></a>
@@ -95,8 +94,17 @@
                                 <li><a href="signup.php">Student Register</a> </li>
                                 <li><a href="facultysign.php">Faculty Register</a></li>
                             </ul>
-                        </li>
-                        <li><a href="reg-students.php">Registered Client</a></li>
+                        </li>  
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Client <i
+                                    class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                            <li><a href="check.php">Check Profile</a></li>
+                            <li><a href="reg-students.php" >Registered Client</a></li>
+                            </ul>
+                        </li>  
+                        
 
                         <li><a href="change-password.php">Change Password</a></li>
                     </ul>

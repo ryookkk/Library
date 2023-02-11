@@ -65,7 +65,7 @@
 			<img class="logo" src="CA.png" />
 		</div>
 		<div>
-			<h1>CARMEL ACADEMY</h1>
+			<h3>CARMEL ACADEMY</h3>
 			<div class="bal">
 				<h3>Balilihan, Bohol<br />
 					Bohol Association of Catholic Schools  (BACS), Diocese of Bohol<br />
